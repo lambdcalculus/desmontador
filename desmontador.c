@@ -1,10 +1,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include <stdio.h>
-
 #define word unsigned char
-#define debug printf("debugando\n")
 
 #define EI_NIDENT 16
 
@@ -173,20 +170,14 @@ void sortSections(section* sections, int len){
 	int max_nextaddr = 0x0fffffff;
 	int currmin_index;
 	for (int i = 0; i < len; i++){
-		//printf("Current min addr: 0x%x\n", min_nextaddr);
-		//printf("Current max addr: 0x%x\n", max_nextaddr);
-		//printf("Current min index: %d\n", currmin_index);
 		for (int j = 0; j < len; j++){
 			if ((sections[j].address > min_nextaddr) & (sections[j].address < max_nextaddr)){
 				max_nextaddr = sections[j].address;
 				currmin_index = j;
-				//printf("NEW max addr: 0x%x\n", max_nextaddr);
-				//printf("NEW min index: %d\n", currmin_index);
 			}
 		}
 		sorted[i]    = sections[currmin_index];
 		min_nextaddr = max_nextaddr;
-		//printf("NEW min addr: 0x%x\n", min_nextaddr);
 		max_nextaddr = 0x0ffffff;
 	}
 	copySections(sections, sorted, len);
@@ -199,20 +190,14 @@ void sortLabels(label* labels, int len){
 	int max_nextaddr = 0x0fffffff;
 	int currmin_index;
 	for (int i = 0; i < len; i++){
-		//printf("Current min addr: 0x%x\n", min_nextaddr);
-		//printf("Current max addr: 0x%x\n", max_nextaddr);
-		//printf("Current min index: %d\n", currmin_index);
 		for (int j = 0; j < len; j++){
 			if ((labels[j].address > min_nextaddr) & (labels[j].address < max_nextaddr)){
 				max_nextaddr = labels[j].address;
 				currmin_index = j;
-				//printf("NEW max addr: 0x%x\n", max_nextaddr);
-				//printf("NEW min index: %d\n", currmin_index);
 			}
 		}
 		sorted[i]    = labels[currmin_index];
 		min_nextaddr = max_nextaddr;
-		//printf("NEW min addr: 0x%x\n", min_nextaddr);
 		max_nextaddr = 0x0ffffff;
 	}
 	copyLabels(labels, sorted, len);
