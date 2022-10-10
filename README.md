@@ -1,0 +1,1 @@
+This is an incomplete clone of `llvm-objdump` for a class I took informally (Basic Computer Organization and Assembly Languages - MC404 at Unicamp), using only a handful of external functions. The full assignment was to disassemble RISCV32 instructions, which I ended up not doing. What's here is worth most of the assignment though.
